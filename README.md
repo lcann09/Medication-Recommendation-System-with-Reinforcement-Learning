@@ -2,7 +2,7 @@
 
 
 ## Abstract
-Diabetes is a widespread chronic disease which can have many treatment options complicated by co-morbid conditions. We use the reinforcement learning algorithm contextual multi-armed bandit (MAB) in order to create a medication recom- mendation system with the goal of supporting clinical decision making. We examine and tune four action-selection methods the for the MAB and find the bootstrapped upper confidence bound gives the best experimental results.
+Diabetes is a widespread chronic disease which can have many treatment options complicated by co-morbid conditions. We use the reinforcement learning algorithm contextual multi-armed bandit (MAB) in order to create a medication recommendation system with the goal of supporting clinical decision making. We examine and tune four action-selection methods the for the MAB and find the bootstrapped upper confidence bound gives the best experimental results.
 
 ## 1. Introduction
 Diabetes is a chronic disease which occurs when the body either cannot produce the hormone insulin itself or is unable to effectively use the insulin it produces (WHO, 2016). It is an increasingly prevalent disease, estimated to affect over 10.5% of the world’s adult population and result in related health care costs of 966 billion USD in 2021 (Sun et al., 2022). Diabetes treatment often includes a medication com- ponent, however, treatment plans are often complicated by the complex interactions between diabetes and its medica- tion with other co-morbid conditions (?). This motivates the need for solutions assisting medical professionals in efficiently and effectively devising patient treatment and medication plans which are suited to a patient’s particular needs.

@@ -93,50 +93,46 @@ Figure 1. Learning curves of algorithms for unbalanced data.
 
 Figure 2. Learning curves of algorithms for balanced data
 
+<img width="402" alt="image" src="https://user-images.githubusercontent.com/47286892/177058964-dfe66d44-29d8-4041-9c38-64f87d9d86c0.png">
+
+Table 2. Summary of the best test accuracy.
+
 ## 6. Discussion
 Despite being a common method, LinUCB did not do very well in practice. In fact, it suffers more when the amount of data decreases as shown by the low test accuracy and the decreasing learning curve for the smaller balanced dataset. This is likely due to LinUCB being intended for continuous rewards (while we use binary rewards) (Cortes, 2019).
-The dataset has a few limitations as it contains sparse nom- inal variables which need to be transformed into one-hot encodings, possibly resulting in overfitting, inaccurate fea- ture importances, or high variance. Moreover, when the dataset is under-sampled to achieve a balanced distribution over the insulin dosage information, the amount of data decreases substantially losing its information and statistical power.
-Regarding the Epsilon-Greedy algorithm, a higher ε, mean- ing that more exploration than exploitation, results in better performance. This could be due to the high dimension of the data set resulting in a large amount of possible pa- tient states/contexts, making exploitation less of an effective learning technique as compared to exploration since it is more frequent to see new contexts instead of learning about existing contexts.
-For the best performing RL model Bootstrapped UCB, it is apparent that a 50% percentile is the ideal value for this hyper parameter, meaning that the 50% percentile of the estimated rewards gives a tight upper confidence bound. As for the other parameter, number of resamples, a smaller number of 5 instead of 10 results in better performance for the balanced data set. This is likely because the number of resamples out of the batch/round size becomes more substantial, resulting in more accurate estimates during the statistical bootstrapping process.
-In general, recommendation problems can be converted to a multi-classification problem with the actions being the la- bels, and the contexts being the training examples. However, supervised learning like logistic regression only performs accurately based on the distribution of the training data. For example, if the training data only contains patients having no insulin, then the supervised model does not have any statistical evidence for or against recommending any other dosage information, resulting in poor performance although practically speaking, such an extreme example rarely exists. With the possibility to explore and find a balance between exploration and exploitation, RL models have an advantage in obtaining more accurate estimates of which dosage to recommend compared to supervised learning .
-7. Conclusion and Future Research
-Multiple contextual MAB algorithms are implemented, trained, and evaluated successfully. As compared to a typ- ical machine learning model like logistic regression, RL models in general has the advantage of not being dependent on the distribution of the training data, and Bootstrapped UCB has achieved a higher accuracy when the amount of data is sufficient. LinUCB suffers from non-continous re- wards but the rest of the RL models perform closely to each
-  Algorithms
- Accuracy
-(unbalanced)
-  Accuracy
-(balanced)
- Logistic regression multi-classification
- 50.8%
-  45.5%
-    Epsilon-Greedy (ε = 0.9)
- 50.8%
-  43.9%
- LinUCB
-(α = 0.9; 0.5; 0.1)
- 49.4%
-  25.0%
- Bootstrapped UCB (#resamples= 10, percentile = 0.5)
- 50.9%
-  43.9%
- Bootstrapped UCB (#resamples= 5, percentile = 0.5)
- 50.6%
-  44.4%
-    Table 2. Summary of the best test accuracy.
 
-Using Contextual Multi-Armed Bandit for Diabetes Medication Recommendations
- other, with Bootstrapped UCB having slight better results. It is suspected that with more more quality data, the learning of the RL agents could be improved. In the future, other ways of determining patient contexts/states could be exper- imented on, and the reward function could involve more conditions such as the the clinical outcome of patients.
-References
+The dataset has a few limitations as it contains sparse nom- inal variables which need to be transformed into one-hot encodings, possibly resulting in overfitting, inaccurate fea- ture importances, or high variance. Moreover, when the dataset is under-sampled to achieve a balanced distribution over the insulin dosage information, the amount of data decreases substantially losing its information and statistical power.
+
+Regarding the Epsilon-Greedy algorithm, a higher ε, mean- ing that more exploration than exploitation, results in better performance. This could be due to the high dimension of the data set resulting in a large amount of possible pa- tient states/contexts, making exploitation less of an effective learning technique as compared to exploration since it is more frequent to see new contexts instead of learning about existing contexts.
+
+For the best performing RL model Bootstrapped UCB, it is apparent that a 50% percentile is the ideal value for this hyper parameter, meaning that the 50% percentile of the estimated rewards gives a tight upper confidence bound. As for the other parameter, number of resamples, a smaller number of 5 instead of 10 results in better performance for the balanced data set. This is likely because the number of resamples out of the batch/round size becomes more substantial, resulting in more accurate estimates during the statistical bootstrapping process.
+
+In general, recommendation problems can be converted to a multi-classification problem with the actions being the la- bels, and the contexts being the training examples. However, supervised learning like logistic regression only performs accurately based on the distribution of the training data. For example, if the training data only contains patients having no insulin, then the supervised model does not have any statistical evidence for or against recommending any other dosage information, resulting in poor performance although practically speaking, such an extreme example rarely exists. With the possibility to explore and find a balance between exploration and exploitation, RL models have an advantage in obtaining more accurate estimates of which dosage to recommend compared to supervised learning.
+
+## 7. Conclusion and Future Research
+Multiple contextual MAB algorithms are implemented, trained, and evaluated successfully. As compared to a typ- ical machine learning model like logistic regression, RL models in general has the advantage of not being dependent on the distribution of the training data, and Bootstrapped UCB has achieved a higher accuracy when the amount of data is sufficient. LinUCB suffers from non-continous rewards but the rest of the RL models perform closely to each other, with Bootstrapped UCB having slight better results. It is suspected that with more more quality data, the learning of the RL agents could be improved. In the future, other ways of determining patient contexts/states could be exper- imented on, and the reward function could involve more conditions such as the the clinical outcome of patients.
+
+## References
+
 Asoh, H., Shiro, M., Akaho, S., Kamishima, T., Hasida, K., Aramaki, E., and Kohro, T. Modeling medical records of diabetes using markov decision processes. pp. 6, 2013.
+
 Cortes, D. Adapting multi-armed bandits policies to con- textual bandits scenarios. arXiv:1811.04383 [cs, stat], Nov 2019. URL http://arxiv.org/abs/1811. 04383. arXiv: 1811.04383.
+
 Gottesman, O., Johansson, F., Meier, J., Dent, J., Lee, D., Srinivasan, S., Zhang, L., Ding, Y., Wihl, D., Peng, X., Yao, J., Lage, I., Mosch, C., Lehman, L.-w. H., Ko- morowski, M., Komorowski, M., Faisal, A., Celi, L. A., Sontag, D., and Doshi-Velez, F. Evaluating reinforce- ment learning algorithms in observational health set- tings. arXiv:1805.12298 [cs, stat], May 2018. URL http://arxiv.org/abs/1805.12298. arXiv: 1805.12298.
+
 Feb 2020. URL http://arxiv.org/abs/2002. 11215. arXiv: 2002.11215.
+
 Silva, N., Werneck, H., Silva, T., Pereira, A. C. M., and Rocha, L. Multi-armed bandits in recommendation sys- tems: A survey of the state-of-the-art and future direc- tions. Expert Systems with Applications, 197:116669, Jul 2022. ISSN 0957-4174. doi: 10.1016/j.eswa.2022. 116669.
 Strack, B., DeShazo, J. P., Gennings, C., Olmo, J. L., Ven- tura, S., Cios, K. J., and Clore, J. N. Impact of hba1c measurement on hospital readmission rates: Analysis of 70,000 clinical database patient records. BioMed Re- search International, 2014:e781670, Apr 2014. ISSN 2314-6133. doi: 10.1155/2014/781670.
+
 Sun, H., Saeedi, P., Karuranga, S., Pinkepank, M., Ogurtsova, K., Duncan, B. B., Stein, C., Basit, A., Chan, J. C. N., Mbanya, J. C., Pavkov, M. E., Ramachan- daran, A., Wild, S. H., James, S., Herman, W. H., Zhang, P., Bommer, C., Kuo, S., Boyko, E. J., and Magliano, D. J. Idf diabetes atlas: Global, regional and country- level diabetes prevalence estimates for 2021 and projec- tions for 2045. Diabetes Research and Clinical Prac- tice, 183:109119, Jan 2022. ISSN 1872-8227. doi: 10.1016/j.diabres.2021.109119.
+
 WHO. Global report on diabetes. World Health Organiza- tion, 2016. ISBN 978-92-4-156525-7. URL https:// apps.who.int/iris/handle/10665/204871.
 Hao, B., Abbasi Yadkori, Y., Wen, Z., and Cheng, G. Boot- strapping upper confidence bound. In Advances in Neural Information Processing Systems, volume 32. Curran As- sociates, Inc., 2019. URL https://proceedings. neurips.cc/paper/2019/hash/ 412758d043dd247bddea07c7ec558c31-Abstract. html.
+
 Li, L., Chu, W., Langford, J., and Schapire, R. E. A contextual-bandit approach to personalized news article recommendation. Proceedings of the 19th international conference on World wide web - WWW ’10, pp. 661, 2010. doi: 10.1145/1772690.1772758. arXiv: 1003.0146.
+
 Liu, S., See, K. C., Ngiam, K. Y., Celi, L. A., Sun, X., and Feng, M. Reinforcement learning for clinical decision support in critical care: Comprehensive review. Journal of Medical Internet Research, 22(7):e18477, Jul 2020. doi: 10.2196/18477.
+
 Oh, S.-H., Lee, S. J., Noh, J., and Mo, J. Optimal treatment recommendations for diabetes patients using the markov decision process along with the south korean electronic health records. Scientific Reports, 11(11):6920, Mar 2021. ISSN 2045-2322. doi: 10.1038/s41598-021-86419-4.
+
 Sarthak, Shukla, S., and Tripathi, S. P. Embpred30: As- sessing 30-days readmission for diabetic patients using categorical embeddings. arXiv:2002.11215 [cs, stat],
